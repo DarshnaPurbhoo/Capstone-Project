@@ -43,7 +43,7 @@ namespace Final_Project___2022
             if (count == 1)
             {
                 //used to open Main window
-                Response.Redirect("AdmissionsAccountReg.aspx");
+                Response.Redirect("AdminMainWindow.aspx");
             }
             else
             {
