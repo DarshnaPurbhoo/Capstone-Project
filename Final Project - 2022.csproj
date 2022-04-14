@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminLogin.aspx" />
+    <Content Include="AdminMainWindow.aspx" />
     <Content Include="AdmissionsAccountReg.aspx" />
     <Content Include="HomePage.aspx" />
     <Content Include="MainWindow.aspx" />
@@ -123,6 +124,13 @@
     </Compile>
     <Compile Include="AdminLogin.aspx.designer.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminMainWindow.aspx.cs">
+      <DependentUpon>AdminMainWindow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminMainWindow.aspx.designer.cs">
+      <DependentUpon>AdminMainWindow.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdmissionsAccountReg.aspx.cs">
       <DependentUpon>AdmissionsAccountReg.aspx</DependentUpon>
