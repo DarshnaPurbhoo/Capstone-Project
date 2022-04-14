@@ -31,28 +31,35 @@ namespace Final_Project___2022
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            string encryptedPassword = Encrypt(txtPassword.Text);
+            try
+            {
+                string encryptedPassword = Encrypt(txtPassword.Text);
 
-            string mainconn = ConfigurationManager.ConnectionStrings["Mysqlconnection"].ConnectionString;
-            MySqlConnection con = new MySqlConnection(mainconn);
+                string mainconn = ConfigurationManager.ConnectionStrings["Mysqlconnection"].ConnectionString;
+                MySqlConnection con = new MySqlConnection(mainconn);
 
-            con.Open();
-            //SQL Query to login
-            String Query = "INSERT INTO StudentReg(Student_Number, Student_Name, Student_Surname, Student_IDNum, Student_DOB, Student_Password) VALUES(@Student_ID, @Student_Name, @Student_Surname, @Student_IDNum, @Student_DOB, @Student_Password);";
-            MySqlCommand cmd = new MySqlCommand(Query, con);
+                con.Open();
+                //SQL Query to login
+                String Query = "INSERT INTO StudentReg(Student_Number, Student_Name, Student_Surname, Student_IDNum, Student_DOB, Student_Password) VALUES(@Student_ID, @Student_Name, @Student_Surname, @Student_IDNum, @Student_DOB, @Student_Password);";
+                MySqlCommand cmd = new MySqlCommand(Query, con);
 
-            cmd.Parameters.AddWithValue("@Student_ID", txtStdNum.Text);
-            cmd.Parameters.AddWithValue("@Student_Name", txtName.Text);
-            cmd.Parameters.AddWithValue("@Student_Surname", txtSurname.Text);
-            cmd.Parameters.AddWithValue("@Student_IDNum", txtIDNum.Text);
-            cmd.Parameters.AddWithValue("@Student_DOB", txtDOB.Text);
-            cmd.Parameters.AddWithValue("@Student_Password", encryptedPassword);
+                cmd.Parameters.AddWithValue("@Student_ID", txtStdNum.Text);
+                cmd.Parameters.AddWithValue("@Student_Name", txtName.Text);
+                cmd.Parameters.AddWithValue("@Student_Surname", txtSurname.Text);
+                cmd.Parameters.AddWithValue("@Student_IDNum", txtIDNum.Text);
+                cmd.Parameters.AddWithValue("@Student_DOB", txtDOB.Text);
+                cmd.Parameters.AddWithValue("@Student_Password", encryptedPassword);
 
-            MySqlDataReader reader = cmd.ExecuteReader();
+                MySqlDataReader reader = cmd.ExecuteReader();
 
-            con.Close();
+                con.Close();
 
-            Response.Write("<script>alert('Your Information has been sent to our admissions team. It will take up to 3 days for your portal to open');</script>");
+                Response.Write("<script>alert('Your Information has been sent to our admissions team. It will take up to 3 days for your portal to open');</script>");
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Missing Deatils');</script>");
+            }
         }
     }
 }
